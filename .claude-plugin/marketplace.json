@@ -1,0 +1,28 @@
+{
+  "name": "sendbird",
+  "description": "Sendbird plugins for Claude Code and Codex",
+  "owner": {
+    "name": "Sendbird",
+    "url": "https://sendbird.com"
+  },
+  "plugins": [
+    {
+      "name": "sendbird-client",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sendbird/sendbird-client-plugin.git",
+        "path": "plugins/sendbird-client",
+        "ref": "v0.1.73"
+      },
+      "description": "Runs local shell scripts as hooks; see README \"What runs on your machine\". Sendbird integration helper for Chat (incl. auth/session), UIKit, and Calls across iOS, Android, and JS."
+    },
+    {
+      "name": "sendbird-cli",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/sendbird/sendbird-cli.git"
+      },
+      "description": "Set up and operate Sendbird with the CLI; choose client assistance for customer app work."
+    }
+  ]
+}
