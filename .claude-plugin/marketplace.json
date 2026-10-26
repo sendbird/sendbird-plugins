@@ -20,7 +20,8 @@
       "name": "sendbird-cli",
       "source": {
         "source": "url",
-        "url": "https://github.com/sendbird/sendbird-cli.git"
+        "url": "https://github.com/sendbird/sendbird-cli.git",
+        "ref": "v0.4.0"
       },
       "description": "Set up and operate Sendbird with the CLI; choose client assistance for customer app work."
     }
