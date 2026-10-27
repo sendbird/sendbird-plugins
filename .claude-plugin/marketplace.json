@@ -12,7 +12,8 @@
         "source": "git-subdir",
         "url": "https://github.com/sendbird/sendbird-client-plugin.git",
         "path": "plugins/sendbird-client",
-        "ref": "v0.1.115"
+        "ref": "v0.1.115",
+        "sha": "4a22a42991cd3e878bad03846097f633037974c5"
       },
       "description": "Runs local shell scripts as hooks; see README \"What runs on your machine\". Sendbird integration helper for Chat (incl. auth/session), UIKit, and Calls across iOS, Android, and JS."
     },
@@ -21,7 +22,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/sendbird/sendbird-cli.git",
-        "ref": "v0.4.0"
+        "ref": "v0.4.0",
+        "sha": "f8967fc2af236ba67995dbff570ff78bcc84c330"
       },
       "description": "Set up and operate Sendbird with the CLI; choose client assistance for customer app work."
     }
