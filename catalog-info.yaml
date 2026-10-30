@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: sendbird/sendbird-plugins
 spec:
-  type: library
+  type: tool
   lifecycle: production
   owner: dep-client-platform
-  system: sendbird-customer-enablement
+  system: sendbird-developer-tools
