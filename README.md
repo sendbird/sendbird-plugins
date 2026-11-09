@@ -1,6 +1,6 @@
 # Sendbird plugins
 
-This repository is the `sendbird` plugin marketplace. It holds only the list of plugins; each plugin's code, documentation, and license live in its own repository.
+This repository is the `sendbird` plugin marketplace. It holds only the list of plugins; each plugin's code, documentation, and license live in its own repository. The files in this repository are under the Apache License 2.0 ([LICENSE](LICENSE)).
 
 | Plugin | Repository |
 |---|---|
