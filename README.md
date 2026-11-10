@@ -1,6 +1,6 @@
 # Sendbird plugins
 
-This repository is the `sendbird` plugin marketplace. It holds only the list of plugins; each plugin's code, documentation, and license live in its own repository.
+This repository is the `sendbird` plugin marketplace. It holds only the list of plugins; each plugin's code, documentation, and license live in its own repository. The marketplace list (`.claude-plugin/marketplace.json`) and this README are licensed under the Apache License 2.0 ([LICENSE](LICENSE)).
 
 | Plugin | Repository |
 |---|---|
