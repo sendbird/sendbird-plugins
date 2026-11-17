@@ -15,7 +15,27 @@
         "ref": "v1.0.3",
         "sha": "54f5136626954f723919102c2208e17641901e3e"
       },
-      "description": "Help adding Sendbird Chat, UIKit, and Calls to iOS, Android, and JS apps, including authentication and sessions. It runs local shell scripts as hooks. See \"What runs on your machine\" in the README."
+      "description": "Help adding Sendbird Chat, UIKit, and Calls to iOS, Android, and JS apps, including authentication and sessions. It runs local shell scripts as hooks. See \"What runs on your machine\" in the README.",
+      "displayName": "Sendbird Client Plugin",
+      "author": {
+        "name": "Sendbird",
+        "url": "https://sendbird.com"
+      },
+      "homepage": "https://sendbird.com/docs",
+      "repository": "https://github.com/sendbird/sendbird-client-plugin",
+      "license": "Apache-2.0",
+      "keywords": [
+        "sendbird",
+        "chat",
+        "uikit",
+        "calls",
+        "ios",
+        "android",
+        "javascript",
+        "react",
+        "react-native"
+      ],
+      "category": "development"
     },
     {
       "name": "sendbird-cli",
@@ -25,7 +45,14 @@
         "version": "0.5.1",
         "registry": "https://registry.npmjs.org"
       },
-      "description": "Set up and operate Sendbird with the CLI; choose client assistance for customer app work."
+      "description": "Set up and operate Sendbird with the CLI; choose client assistance for customer app work.",
+      "displayName": "Sendbird CLI",
+      "author": {
+        "name": "Sendbird",
+        "url": "https://sendbird.com"
+      },
+      "homepage": "https://tools.docs.sendbird.com/plugins/cli",
+      "category": "development"
     }
   ]
 }
