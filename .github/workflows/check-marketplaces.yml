@@ -3,6 +3,8 @@
 # repository, this job rewrites the Codex list from it and pushes that commit to the pull
 # request's branch, so a release PR such as a CLI version bump needs nothing more. A pull
 # request from a fork cannot be pushed to; there the check fails and names the script to run.
+# The sync commit says [skip ci]: this job already checked the synced lists, and a run started
+# by the bot's own push would wait for a maintainer's approval.
 name: check-marketplaces
 on:
   pull_request:
@@ -31,7 +33,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add .agents/plugins/marketplace.json
-            git commit -m "Sync the Codex marketplace list with the Claude Code list"
+            git commit -m "Sync the Codex marketplace list with the Claude Code list [skip ci]"
             git push origin "HEAD:${{ github.head_ref }}"
           fi
       - name: Both marketplace files list the same plugins and pins
