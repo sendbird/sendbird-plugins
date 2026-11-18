@@ -27,6 +27,8 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
       - name: Bring the Codex list in step with the Claude Code list
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
           bash scripts/sync-codex-marketplace.sh
           if ! git diff --quiet -- .agents/plugins/marketplace.json; then
@@ -34,7 +36,7 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add .agents/plugins/marketplace.json
             git commit -m "Sync the Codex marketplace list with the Claude Code list [skip ci]"
-            git push origin "HEAD:${{ github.head_ref }}"
+            git push origin "HEAD:refs/heads/$HEAD_REF"
           fi
       - name: Both marketplace files list the same plugins and pins
         run: bash scripts/check-marketplaces.sh
