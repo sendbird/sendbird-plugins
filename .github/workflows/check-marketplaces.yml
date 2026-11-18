@@ -1,0 +1,42 @@
+# Claude Code reads .claude-plugin/marketplace.json and Codex reads .agents/plugins/marketplace.json.
+# People and release automation edit only the Claude Code list. On a pull request from this
+# repository, this job rewrites the Codex list from it and pushes that commit to the pull
+# request's branch, so a release PR such as a CLI version bump needs nothing more. A pull
+# request from a fork cannot be pushed to; there the check fails and names the script to run.
+# The sync commit says [skip ci]: this job already checked the synced lists, and a run started
+# by the bot's own push would wait for a maintainer's approval.
+name: check-marketplaces
+on:
+  pull_request:
+    paths: [".claude-plugin/**", ".agents/**", "scripts/*marketplace*.sh", ".github/workflows/check-marketplaces.yml"]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: check-marketplaces-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+      - name: Bring the Codex list in step with the Claude Code list
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          bash scripts/sync-codex-marketplace.sh
+          if ! git diff --quiet -- .agents/plugins/marketplace.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .agents/plugins/marketplace.json
+            git commit -m "Sync the Codex marketplace list with the Claude Code list [skip ci]"
+            git push origin "HEAD:refs/heads/$HEAD_REF"
+          fi
+      - name: Both marketplace files list the same plugins and pins
+        run: bash scripts/check-marketplaces.sh

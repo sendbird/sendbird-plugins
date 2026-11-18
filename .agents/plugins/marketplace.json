@@ -1,0 +1,37 @@
+{
+  "name": "sendbird",
+  "interface": {
+    "displayName": "Sendbird"
+  },
+  "plugins": [
+    {
+      "name": "sendbird-client",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sendbird/sendbird-client-plugin.git",
+        "path": "plugins/sendbird-client",
+        "ref": "v1.0.3",
+        "sha": "54f5136626954f723919102c2208e17641901e3e"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "sendbird-cli",
+      "source": {
+        "source": "npm",
+        "package": "@sendbird/cli",
+        "version": "0.5.1",
+        "registry": "https://registry.npmjs.org"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
