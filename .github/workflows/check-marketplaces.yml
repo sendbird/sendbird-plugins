@@ -1,17 +1,38 @@
-# Claude Code and Codex read different marketplace files. This fails a change that updates one
-# and not the other, so both list the same plugins at the same pins.
+# Claude Code reads .claude-plugin/marketplace.json and Codex reads .agents/plugins/marketplace.json.
+# People and release automation edit only the Claude Code list. On a pull request from this
+# repository, this job rewrites the Codex list from it and pushes that commit to the pull
+# request's branch, so a release PR such as a CLI version bump needs nothing more. A pull
+# request from a fork cannot be pushed to; there the check fails and names the script to run.
 name: check-marketplaces
 on:
   pull_request:
-    paths: [".claude-plugin/**", ".agents/**", "scripts/check-marketplaces.sh", ".github/workflows/check-marketplaces.yml"]
+    paths: [".claude-plugin/**", ".agents/**", "scripts/*marketplace*.sh", ".github/workflows/check-marketplaces.yml"]
   push:
     branches: [main]
 permissions:
   contents: read
+concurrency:
+  group: check-marketplaces-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+      - name: Bring the Codex list in step with the Claude Code list
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          bash scripts/sync-codex-marketplace.sh
+          if ! git diff --quiet -- .agents/plugins/marketplace.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .agents/plugins/marketplace.json
+            git commit -m "Sync the Codex marketplace list with the Claude Code list"
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
       - name: Both marketplace files list the same plugins and pins
         run: bash scripts/check-marketplaces.sh

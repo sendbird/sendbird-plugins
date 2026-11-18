@@ -116,7 +116,7 @@ Try it after install:
 ## How this marketplace is maintained
 
 - The list is kept in two files with the same plugins and pins. Claude Code reads `.claude-plugin/marketplace.json`. Codex reads `.agents/plugins/marketplace.json`, which also carries Codex's install policy and category for each plugin.
-- Codex ignores the Claude Code file once its own file exists, so both files change in the same pull request. The `check-marketplaces` workflow runs [`scripts/check-marketplaces.sh`](scripts/check-marketplaces.sh) on every pull request and fails when the two lists name different plugins, sources, or pins. Run the script locally before you push.
+- Edit only `.claude-plugin/marketplace.json`. Codex ignores that file once its own file exists, so on every pull request the `check-marketplaces` workflow rewrites the Codex list from it with [`scripts/sync-codex-marketplace.sh`](scripts/sync-codex-marketplace.sh), pushes that commit to the pull request's branch, and then checks that the two lists match with [`scripts/check-marketplaces.sh`](scripts/check-marketplaces.sh). The Codex list keeps its own install policy and category for each plugin. A pull request from a fork cannot be pushed to, so there you run the sync script yourself and commit the result.
 - Each entry is pinned: `sendbird-client` to a release tag and its commit in [sendbird/sendbird-client-plugin](https://github.com/sendbird/sendbird-client-plugin), and `sendbird-cli` to an exact npm version.
 - A new release reaches this list only through a pull request that the maintainers in [`.github/CODEOWNERS`](.github/CODEOWNERS) review. Each plugin release lists what changed.
 - The plugin entries carry the plugin's display name, author, homepage, and category, because Claude Code shows only the list entry for a plugin that is not installed yet.
@@ -130,9 +130,10 @@ sendbird-plugins/
 ├── .github/
 │   ├── CODEOWNERS         who reviews changes to the lists
 │   └── workflows/
-│       └── check-marketplaces.yml   fails when the two lists differ
+│       └── check-marketplaces.yml   syncs the Codex list and checks both
 ├── scripts/
-│   └── check-marketplaces.sh        the comparison the workflow runs
+│   ├── sync-codex-marketplace.sh    rewrites the Codex list from the Claude Code list
+│   └── check-marketplaces.sh        checks that the two lists match
 ├── LICENSE                Apache-2.0, for the list and this README
 ├── README.md
 └── SECURITY.md            how to report a vulnerability
@@ -150,4 +151,4 @@ Report a vulnerability privately; do not open a public issue. [SECURITY.md](SECU
 
 ## License
 
-The marketplace lists (`.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`), the check script, and this README are licensed under the Apache License 2.0 ([LICENSE](LICENSE)). Each plugin comes with its own license: `sendbird-client` under Apache-2.0, and `sendbird-cli` under the terms in its npm package's `LICENSE`.
+The marketplace lists (`.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`), the scripts, and this README are licensed under the Apache License 2.0 ([LICENSE](LICENSE)). Each plugin comes with its own license: `sendbird-client` under Apache-2.0, and `sendbird-cli` under the terms in its npm package's `LICENSE`.

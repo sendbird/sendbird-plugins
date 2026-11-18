@@ -9,7 +9,7 @@ claude="$root/.claude-plugin/marketplace.json"
 codex="$root/.agents/plugins/marketplace.json"
 pick='[.plugins[] | {name, source}] | sort_by(.name)'
 if [ "$(jq -c "$pick" "$claude")" != "$(jq -c "$pick" "$codex")" ]; then
-  echo "The plugin lists differ. Change .claude-plugin/marketplace.json and .agents/plugins/marketplace.json together:" >&2
+  echo "The plugin lists differ. Run bash scripts/sync-codex-marketplace.sh and commit the result:" >&2
   diff <(jq "$pick" "$claude") <(jq "$pick" "$codex") >&2 || true
   exit 1
 fi
