@@ -1,0 +1,17 @@
+# Claude Code and Codex read different marketplace files. This fails a change that updates one
+# and not the other, so both list the same plugins at the same pins.
+name: check-marketplaces
+on:
+  pull_request:
+    paths: [".claude-plugin/**", ".agents/**", "scripts/check-marketplaces.sh", ".github/workflows/check-marketplaces.yml"]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Both marketplace files list the same plugins and pins
+        run: bash scripts/check-marketplaces.sh

@@ -21,7 +21,7 @@
         "name": "Sendbird",
         "url": "https://sendbird.com"
       },
-      "homepage": "https://sendbird.com/docs",
+      "homepage": "https://tools.docs.sendbird.com/",
       "repository": "https://github.com/sendbird/sendbird-client-plugin",
       "license": "Apache-2.0",
       "keywords": [
@@ -51,7 +51,7 @@
         "name": "Sendbird",
         "url": "https://sendbird.com"
       },
-      "homepage": "https://tools.docs.sendbird.com/plugins/cli",
+      "homepage": "https://tools.docs.sendbird.com/",
       "category": "development"
     }
   ]

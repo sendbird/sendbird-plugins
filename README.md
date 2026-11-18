@@ -115,7 +115,8 @@ Try it after install:
 
 ## How this marketplace is maintained
 
-- `.claude-plugin/marketplace.json` is the list. Claude Code reads it, and Codex reads the same file.
+- The list is kept in two files with the same plugins and pins. Claude Code reads `.claude-plugin/marketplace.json`. Codex reads `.agents/plugins/marketplace.json`, which also carries Codex's install policy and category for each plugin.
+- Codex ignores the Claude Code file once its own file exists, so both files change in the same pull request. The `check-marketplaces` workflow runs [`scripts/check-marketplaces.sh`](scripts/check-marketplaces.sh) on every pull request and fails when the two lists name different plugins, sources, or pins. Run the script locally before you push.
 - Each entry is pinned: `sendbird-client` to a release tag and its commit in [sendbird/sendbird-client-plugin](https://github.com/sendbird/sendbird-client-plugin), and `sendbird-cli` to an exact npm version.
 - A new release reaches this list only through a pull request that the maintainers in [`.github/CODEOWNERS`](.github/CODEOWNERS) review. Each plugin release lists what changed.
 - The plugin entries carry the plugin's display name, author, homepage, and category, because Claude Code shows only the list entry for a plugin that is not installed yet.
@@ -123,8 +124,15 @@ Try it after install:
 ```text
 sendbird-plugins/
 ├── .claude-plugin/
-│   └── marketplace.json   the plugin list
-├── .github/CODEOWNERS     who reviews changes to the list
+│   └── marketplace.json   the plugin list Claude Code reads
+├── .agents/plugins/
+│   └── marketplace.json   the same list for Codex
+├── .github/
+│   ├── CODEOWNERS         who reviews changes to the lists
+│   └── workflows/
+│       └── check-marketplaces.yml   fails when the two lists differ
+├── scripts/
+│   └── check-marketplaces.sh        the comparison the workflow runs
 ├── LICENSE                Apache-2.0, for the list and this README
 ├── README.md
 └── SECURITY.md            how to report a vulnerability
@@ -142,4 +150,4 @@ Report a vulnerability privately; do not open a public issue. [SECURITY.md](SECU
 
 ## License
 
-The marketplace list (`.claude-plugin/marketplace.json`) and this README are licensed under the Apache License 2.0 ([LICENSE](LICENSE)). Each plugin comes with its own license: `sendbird-client` under Apache-2.0, and `sendbird-cli` under the terms in its npm package's `LICENSE`.
+The marketplace lists (`.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`), the check script, and this README are licensed under the Apache License 2.0 ([LICENSE](LICENSE)). Each plugin comes with its own license: `sendbird-client` under Apache-2.0, and `sendbird-cli` under the terms in its npm package's `LICENSE`.
