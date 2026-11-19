@@ -15,7 +15,7 @@
         "ref": "v1.0.4",
         "sha": "a8dacbd86403abc15f56208ef095ece7ad8cda1c"
       },
-      "description": "Help adding Sendbird Chat, UIKit, and Calls to iOS, Android, and JS apps, including authentication and sessions. It runs local shell scripts as hooks. See \"What runs on your machine\" in the README.",
+      "description": "Add Sendbird Chat (including authentication and sessions), UIKit, and Calls to iOS, Android, React, and React Native apps from Claude Code or Codex, writing code from verified documentation and the Sendbird SDK you have installed. It runs local shell scripts as hooks. See \"What runs on your machine\" in the README.",
       "displayName": "Sendbird Client Plugin",
       "author": {
         "name": "Sendbird",
@@ -33,7 +33,12 @@
         "android",
         "javascript",
         "react",
-        "react-native"
+        "react-native",
+        "swiftui",
+        "jetpack-compose",
+        "in-app-chat",
+        "claude-code",
+        "codex"
       ],
       "category": "development"
     },
