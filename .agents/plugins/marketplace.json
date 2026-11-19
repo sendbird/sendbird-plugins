@@ -24,7 +24,7 @@
       "source": {
         "source": "npm",
         "package": "@sendbird/cli",
-        "version": "0.5.1",
+        "version": "0.6.1",
         "registry": "https://registry.npmjs.org"
       },
       "policy": {
