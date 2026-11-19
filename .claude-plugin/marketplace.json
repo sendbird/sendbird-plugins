@@ -42,7 +42,7 @@
       "source": {
         "source": "npm",
         "package": "@sendbird/cli",
-        "version": "0.5.1",
+        "version": "0.6.1",
         "registry": "https://registry.npmjs.org"
       },
       "description": "Set up and operate Sendbird with the CLI; choose client assistance for customer app work.",
