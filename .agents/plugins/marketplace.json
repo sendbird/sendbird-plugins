@@ -10,8 +10,8 @@
         "source": "git-subdir",
         "url": "https://github.com/sendbird/sendbird-client-plugin.git",
         "path": "plugins/sendbird-client",
-        "ref": "v1.0.5",
-        "sha": "a15dbc2e92dca9c3e302cd01345c7a4580605932"
+        "ref": "v1.0.6",
+        "sha": "dd8cc7a734c94650657f296ea7e049a3b1d44e11"
       },
       "policy": {
         "installation": "AVAILABLE",
