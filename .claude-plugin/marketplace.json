@@ -12,8 +12,8 @@
         "source": "git-subdir",
         "url": "https://github.com/sendbird/sendbird-client-plugin.git",
         "path": "plugins/sendbird-client",
-        "ref": "v1.0.5",
-        "sha": "a15dbc2e92dca9c3e302cd01345c7a4580605932"
+        "ref": "v1.0.7",
+        "sha": "6807b6e78260b1eef890ead5a4e47ac36a2ad76d"
       },
       "description": "Add Sendbird Chat (including authentication and sessions), UIKit, and Calls to iOS, Android, React, and React Native apps from Claude Code or Codex, writing code from verified documentation and the Sendbird SDK you have installed. It runs local shell scripts as hooks. See \"What runs on your machine\" in the README.",
       "displayName": "Sendbird Client Plugin",
